@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:clamp(13px,1.1vw,16px)}
+body,html{
+  font-family:'DM Sans',sans-serif;
+  background:#f0f5fb;
+  color:#0a1628;
+  width:100%;min-height:100%;min-height:100dvh;overflow-y:auto;
+}
+
+/* ── Animations ─────────────────────────────────────────── */
+@keyframes fadeUp    {from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fadeIn    {from{opacity:0}to{opacity:1}}
+@keyframes spinR     {to{transform:rotate(360deg)}}
+@keyframes pulse     {0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes shimmer   {0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes slideIn   {from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+@keyframes floatUp   {0%{transform:translateY(0px) rotate(0deg);opacity:0.15}50%{opacity:0.3}100%{transform:translateY(-100vh) rotate(360deg);opacity:0}}
+@keyframes gradShift {0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes glowPulse {0%,100%{box-shadow:0 0 20px rgba(26,111,196,0.15)}50%{box-shadow:0 0 40px rgba(26,111,196,0.35)}}
+
+.fu{animation:fadeUp .5s cubic-bezier(.22,1,.36,1) both}
+.fi{animation:fadeIn .5s ease both}
+.si{animation:slideIn .35s cubic-bezier(.22,1,.36,1) both}
+
+textarea:focus,input:focus{outline:none}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:#c2d4e8;border-radius:2px}
+.no-scroll::-webkit-scrollbar{display:none}
+button,textarea,input,select{font-family:'DM Sans',sans-serif!important}
+textarea::placeholder,input::placeholder{color:#c2d4e8;font-size:0.85em}
+
+/* ── Live Background ────────────────────────────────────── */
+.live-bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.live-bg .particle{position:absolute;border-radius:50%;animation:floatUp linear infinite;background:rgba(26,111,196,0.12)}
+.live-bg .hex{position:absolute;border:1.5px solid rgba(26,111,196,0.08);animation:floatUp linear infinite;border-radius:4px;transform:rotate(45deg)}
+
+/* ── Glass Card ─────────────────────────────────────────── */
+.glass-card{
+  background:rgba(255,255,255,0.72);
+  backdrop-filter:blur(18px) saturate(1.4);
+  -webkit-backdrop-filter:blur(18px) saturate(1.4);
+  border:1.5px solid rgba(255,255,255,0.55);
+  box-shadow:0 8px 40px rgba(13,43,82,0.10), 0 1px 0 rgba(255,255,255,0.8) inset;
+}
+
+/* ── Blue Glow Button ───────────────────────────────────── */
+.btn-primary{
+  background:linear-gradient(135deg,#1A6FC4 0%,#0D2B52 100%);
+  color:#fff;border:none;border-radius:12px;
+  cursor:pointer;font-weight:700;letter-spacing:0.08em;
+  box-shadow:0 6px 24px rgba(26,111,196,0.35);
+  transition:all .25s cubic-bezier(.22,1,.36,1);
+  position:relative;overflow:hidden;
+}
+.btn-primary::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,transparent 60%);
+  pointer-events:none;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(26,111,196,0.45)}
+
+/* ── Progress Glow ──────────────────────────────────────── */
+.progress-glow{box-shadow:0 0 8px rgba(26,111,196,0.5)}
+
+/* ── Org Tabs ───────────────────────────────────────────── */
+.org-tab{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;font-size:0.62rem;font-weight:700;letter-spacing:0.12em;border-radius:8px;cursor:pointer;border:none;transition:all .2s;background:transparent;color:#6b8aaa}
+.org-tab.active{background:#0D2B52;color:#fff}
+
+/* ── Auth mode toggle ───────────────────────────────────── */
+.auth-mode-btn{flex:1;padding:10px;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;border:none;cursor:pointer;transition:all .2s;border-radius:8px}
+.auth-mode-btn.active{background:#0D2B52;color:#fff;box-shadow:0 3px 12px rgba(13,43,82,0.3)}
+.auth-mode-btn:not(.active){background:transparent;color:#6b8aaa}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media(max-width:768px){
+  .q-screen-root{min-height:100dvh!important;height:auto!important;flex-direction:column;overflow-y:auto!important}
+  .q-content-scroll{flex:none!important;overflow-y:visible!important;padding-bottom:90px!important}
+  .q-bottom-nav{position:fixed!important;bottom:0;left:0;right:0;z-index:100}
+  .results-root{height:auto!important;overflow-y:auto!important;padding:10px!important}
+  .results-grid-top{grid-template-columns:1fr!important;height:auto!important}
+  .results-grid-bottom{grid-template-columns:1fr!important;height:auto!important}
+  .dash-panel{min-height:280px}
+  .org-dash-grid{grid-template-columns:1fr!important}
+  .org-single-grid{grid-template-columns:1fr!important;height:auto!important}
+}
