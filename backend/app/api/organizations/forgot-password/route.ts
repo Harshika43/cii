@@ -23,12 +23,13 @@ export async function POST(req: NextRequest) {
     const token   = crypto.randomBytes(32).toString("hex");
     const expires = new Date(Date.now() + 1000 * 60 * 60).toISOString();
 
-    await supabase
+    await supabaseconst siteUrl = (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").replace(/\/$/, "");
+    const resetUrl = `${siteUrl}/reset-password?token=${token}`;
       .from("cii_organizations")
       .update({ reset_token: token, reset_token_expires_at: expires })
       .eq("id", org.id);
 
-    const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${token}`;
+    
 
     await transporter.sendMail({
       from: `"Admin Portal" <${process.env.SMTP_EMAIL}>`,
