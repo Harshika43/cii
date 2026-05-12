@@ -106,7 +106,7 @@ export function AnalyzingScreen() {
         </h2>
 
         <p style={{ fontSize:"0.82rem",color:C.inkM,lineHeight:1.8,maxWidth:300,margin:"0 auto 20px" }}>
-          Claude is evaluating your open-ended responses for originality, flexibility, and depth.
+          Tool is evaluating your open-ended responses for originality, flexibility, and depth.
         </p>
 
         {/* Progress bar */}
